@@ -1,0 +1,29 @@
+# Política de Privacidad de Aranews
+
+**Última actualización:** [FECHA]
+
+**[TU NOMBRE O NOMBRE DE TU EMPRESA]** (en adelante, "nosotros") opera la aplicación móvil **Aranews**. Esta página le informa de nuestras políticas con respecto a la recopilación, el uso y la divulgación de información personal cuando utiliza nuestro servicio.
+
+### 1. Recopilación y uso de información
+Para una mejor experiencia al utilizar nuestro servicio, no le pedimos que nos proporcione ninguna información de identificación personal. La aplicación utiliza datos públicos provenientes de **Aragón Open Data**.
+
+### 2. Datos de registro y almacenamiento local
+La aplicación almacena de forma local en su dispositivo:
+*   Las últimas noticias descargadas para permitir su lectura rápida (Base de datos SQLite/Room).
+*   La fecha y hora de la última actualización (SharedPreferences).
+Estos datos permanecen en su dispositivo y no son enviados a nuestros servidores.
+
+### 3. Proveedores de servicios y Enlaces a terceros
+La aplicación utiliza los siguientes servicios que pueden recopilar información utilizada para identificarle:
+*   **Google Play Services**: Para la distribución y analíticas básicas de la tienda.
+*   **Aragón Open Data API**: Para obtener el contenido de las noticias.
+*   **Pestañas personalizadas de Chrome (Android Browser)**: Cuando hace clic en un enlace de noticia, se abre un navegador. No controlamos las políticas de privacidad de los sitios web externos que visite.
+
+### 4. Seguridad
+Valoramos su confianza, por lo que no recopilamos datos personales sensibles. Sin embargo, recuerde que ningún método de transmisión por Internet o almacenamiento electrónico es 100% seguro.
+
+### 5. Cambios en esta Política de Privacidad
+Podemos actualizar nuestra Política de Privacidad periódicamente. Se le recomienda revisar esta página periódicamente para ver cualquier cambio.
+
+### 6. Contacto
+Si tiene alguna pregunta o sugerencia sobre nuestra Política de Privacidad, no dude en contactarnos en: **[TU EMAIL DE CONTACTO]**.
