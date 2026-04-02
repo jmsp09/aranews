@@ -1,6 +1,6 @@
-package com.example.myapplication.api
+package com.vulkanalia.aranews.api
 
-import com.example.myapplication.data.NewsItem
+import com.vulkanalia.aranews.data.NewsItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 

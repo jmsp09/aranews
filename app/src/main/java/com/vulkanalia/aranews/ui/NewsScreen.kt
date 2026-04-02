@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.vulkanalia.aranews.ui
 
 import android.content.Context
 import android.net.Uri
@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.data.NewsItem
+import com.vulkanalia.aranews.data.NewsItem
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

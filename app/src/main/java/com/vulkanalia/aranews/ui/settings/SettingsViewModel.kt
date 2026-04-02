@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.settings
+package com.vulkanalia.aranews.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,6 +1,6 @@
-package com.example.myapplication.data
+package com.vulkanalia.aranews.data
 
-import com.example.myapplication.api.AragonOpenDataApi
+import com.vulkanalia.aranews.api.AragonOpenDataApi
 import kotlinx.coroutines.flow.Flow
 
 class NewsRepository(

@@ -1,13 +1,13 @@
-package com.example.myapplication.ui
+package com.vulkanalia.aranews.ui
 
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.api.AragonOpenDataApi
-import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.NewsItem
-import com.example.myapplication.data.NewsRepository
+import com.vulkanalia.aranews.api.AragonOpenDataApi
+import com.vulkanalia.aranews.data.AppDatabase
+import com.vulkanalia.aranews.data.NewsItem
+import com.vulkanalia.aranews.data.NewsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

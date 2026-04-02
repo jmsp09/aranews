@@ -1,11 +1,11 @@
-package com.example.myapplication.worker
+package com.vulkanalia.aranews.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.myapplication.api.AragonOpenDataApi
-import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.NewsRepository
+import com.vulkanalia.aranews.api.AragonOpenDataApi
+import com.vulkanalia.aranews.data.AppDatabase
+import com.vulkanalia.aranews.data.NewsRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

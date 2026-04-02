@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.transform
+package com.vulkanalia.aranews.ui.transform
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.transform
+package com.vulkanalia.aranews.ui.transform
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentTransformBinding
-import com.example.myapplication.databinding.ItemTransformBinding
+import com.vulkanalia.aranews.R
+import com.vulkanalia.aranews.databinding.FragmentTransformBinding
+import com.vulkanalia.aranews.databinding.ItemTransformBinding
 
 /**
  * Fragment that demonstrates a responsive layout pattern where the format of the content

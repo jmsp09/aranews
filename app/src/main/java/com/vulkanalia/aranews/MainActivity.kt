@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.vulkanalia.aranews
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,9 +9,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.work.*
-import com.example.myapplication.ui.NewsScreen
-import com.example.myapplication.ui.NewsViewModel
-import com.example.myapplication.worker.RefreshDataWorker
+import com.vulkanalia.aranews.ui.NewsScreen
+import com.vulkanalia.aranews.ui.NewsViewModel
+import com.vulkanalia.aranews.worker.RefreshDataWorker
 import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
