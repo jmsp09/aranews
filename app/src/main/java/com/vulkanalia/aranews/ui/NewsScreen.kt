@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.vulkanalia.aranews.data.NewsItem
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -44,6 +46,7 @@ fun NewsScreen(viewModel: NewsViewModel) {
 
     var showInfoDialog by remember { mutableStateOf(false) }
     var selectedNews by remember { mutableStateOf<NewsItem?>(null) }
+    var selectedTab by remember { mutableIntStateOf(0) }
 
     Scaffold(
         topBar = {
@@ -110,18 +113,136 @@ fun NewsScreen(viewModel: NewsViewModel) {
     }
 
     if (showInfoDialog) {
-        AlertDialog(
-            onDismissRequest = { showInfoDialog = false },
-            title = { Text("Información") },
-            text = {
-                Text("Datos obtenidos a partir de los datos abiertos de Aragón Open Data sobre 'Noticias provenientes de entidades públicas de administración local de Aragón'")
-            },
-            confirmButton = {
-                TextButton(onClick = { showInfoDialog = false }) {
-                    Text("Cerrar")
+        Dialog(onDismissRequest = { showInfoDialog = false }) {
+            Surface(
+                shape = MaterialTheme.shapes.extraLarge,
+                tonalElevation = 6.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+            ) {
+                Column {
+                    Text(
+                        text = "Información",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier.padding(top = 24.dp, start = 24.dp, end = 24.dp, bottom = 16.dp)
+                    )
+
+                    TabRow(
+                        selectedTabIndex = selectedTab,
+                        modifier = Modifier.fillMaxWidth(),
+                        containerColor = Color.Transparent
+                    ) {
+                        Tab(
+                            selected = selectedTab == 0,
+                            onClick = { selectedTab = 0 },
+                            text = { Text("Info", fontSize = 12.sp) }
+                        )
+                        Tab(
+                            selected = selectedTab == 1,
+                            onClick = { selectedTab = 1 },
+                            text = { Text("Privacidad", fontSize = 12.sp) }
+                        )
+                        Tab(
+                            selected = selectedTab == 2,
+                            onClick = { selectedTab = 2 },
+                            text = { Text("Contacto", fontSize = 12.sp) }
+                        )
+                    }
+
+                    Box(modifier = Modifier
+                        .padding(24.dp)
+                        .heightIn(min = 100.dp)
+                    ) {
+                        when (selectedTab) {
+                            0 -> {
+                                val infoText = buildAnnotatedString {
+                                    append("Datos obtenidos a partir de los datos abiertos de Aragón Open Data sobre 'Noticias provenientes de entidades públicas de administración local de Aragón'. Fuente: ")
+                                    pushStringAnnotation(tag = "URL", annotation = "https://opendata.aragon.es")
+                                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                        append("https://opendata.aragon.es")
+                                    }
+                                    pop()
+                                }
+
+                                ClickableText(
+                                    text = infoText,
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        textAlign = TextAlign.Justify
+                                    ),
+                                    onClick = { offset ->
+                                        infoText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                                            .firstOrNull()?.let { annotation ->
+                                                openUrl(context, annotation.item)
+                                            }
+                                    }
+                                )
+                            }
+                            1 -> {
+                                val privacyText = buildAnnotatedString {
+                                    append("Puedes consultar nuestra política de privacidad detallada en nuestro sitio web oficial. Ver política de privacidad: ")
+                                    pushStringAnnotation(tag = "URL", annotation = "https://jmsp09.github.io/aranews")
+                                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                        append("https://jmsp09.github.io/aranews")
+                                    }
+                                    pop()
+                                }
+
+                                ClickableText(
+                                    text = privacyText,
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        textAlign = TextAlign.Justify
+                                    ),
+                                    onClick = { offset ->
+                                        privacyText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                                            .firstOrNull()?.let { annotation ->
+                                                openUrl(context, annotation.item)
+                                            }
+                                    }
+                                )
+                            }
+                            2 -> {
+                                val contactText = buildAnnotatedString {
+                                    append("Si tienes alguna duda, sugerencia o problema técnico, puedes ponerte en contacto con nosotros a través de nuestra web. Contactar: ")
+                                    pushStringAnnotation(tag = "URL", annotation = "https://jmsp09.github.io/aranews#contact-us")
+                                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                        append("https://jmsp09.github.io/aranews#contact-us")
+                                    }
+                                    pop()
+                                }
+
+                                ClickableText(
+                                    text = contactText,
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        textAlign = TextAlign.Justify
+                                    ),
+                                    onClick = { offset ->
+                                        contactText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                                            .firstOrNull()?.let { annotation ->
+                                                openUrl(context, annotation.item)
+                                            }
+                                    }
+                                )
+                            }
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        TextButton(onClick = { showInfoDialog = false }) {
+                            Text("Cerrar")
+                        }
+                    }
                 }
             }
-        )
+        }
     }
 
     selectedNews?.let { news ->
@@ -146,6 +267,56 @@ fun NewsScreen(viewModel: NewsViewModel) {
                         text = "Publicado: ${formatDate(news.fGrabacion)}",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.secondary
+                    )
+
+                    if (!news.url.isNullOrBlank()) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Ver noticia completa",
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.clickable {
+                                openUrl(context, news.url!!)
+                            }
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+                    val sourceText = buildAnnotatedString {
+                        append("Ver fuente original de la noticia: ")
+                        
+                        pushStringAnnotation(tag = "JSON", annotation = "https://opendata.aragon.es/GA_OD_Core/download?resource_id=25&formato=json")
+                        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                            append("JSON")
+                        }
+                        pop()
+                        
+                        append(" ")
+                        
+                        pushStringAnnotation(tag = "WEB", annotation = "https://opendata.aragon.es/datos/catalogo/dataset/noticias-provenientes-de-entidades-publicas")
+                        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                            append("Web")
+                        }
+                        pop()
+                    }
+                    
+                    ClickableText(
+                        text = sourceText,
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Justify
+                        ),
+                        onClick = { offset ->
+                            sourceText.getStringAnnotations(tag = "JSON", start = offset, end = offset)
+                                .firstOrNull()?.let { annotation ->
+                                    openUrl(context, annotation.item)
+                                }
+                            sourceText.getStringAnnotations(tag = "WEB", start = offset, end = offset)
+                                .firstOrNull()?.let { annotation ->
+                                    openUrl(context, annotation.item)
+                                }
+                        }
                     )
                 }
             },
